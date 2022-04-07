@@ -132,13 +132,15 @@ class CustomerController extends Controller
         }
         
         $customer = $this->getCustomers->updateCustomers($request, $id);
+
+        $newcustomer = $this->getCustomers->getCustomersById($id);
         
         //Customer updated, return success response
         if($customer == true){
             return response()->json([
                 'success' => true,
                 'message' => 'Customer updated successfully',
-                'data' => $ckCustomer
+                'data' => $newcustomer
             ], Response::HTTP_OK);
         }else{ 
             return response()->json([
