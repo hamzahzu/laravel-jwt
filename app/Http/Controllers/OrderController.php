@@ -121,13 +121,14 @@ class OrderController extends Controller
         }
         
         $order = $this->getOrder->updateOrders($request, $id);
+        $newOrder = $this->getOrder->getOrdersById($id);
         
         //Order updated, return success response
         if($order == true){
             return response()->json([
                 'success' => true,
                 'message' => 'Order updated successfully',
-                'data' => $ckOrder
+                'data' => $newOrder
             ], Response::HTTP_OK);
         }else{ 
             return response()->json([
